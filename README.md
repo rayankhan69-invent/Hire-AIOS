@@ -1,6 +1,6 @@
-# HireIQ AI — Frontend
+# Hire AIOS — Frontend
 
-The frontend shell for **HireIQ AI**, an AI-powered hiring platform built for
+The frontend shell for **Hire AIOS**, an AI-powered hiring platform built for
 recruitment agencies and organizations. This is a UI-only scaffold: no
 authentication logic, no data fetching, no business logic. It's meant as the
 foundation to build features on top of.
