@@ -1,5 +1,3 @@
-"use client";
-
 import { Sidebar } from "@/components/layout/sidebar";
 import { Topbar } from "@/components/layout/topbar";
 import { TooltipProvider } from "@/components/ui/tooltip";

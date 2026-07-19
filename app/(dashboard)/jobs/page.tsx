@@ -1,9 +1,10 @@
-import { Briefcase, PlusCircle, SlidersHorizontal } from "lucide-react";
+import Link from "next/link";
+import { PlusCircle } from "lucide-react";
 
 import { PageHeader } from "@/components/shared/page-header";
-import { EmptyState } from "@/components/shared/empty-state";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { JobsTable } from "@/components/jobs/jobs-table";
+import { jobs } from "@/lib/mock/jobs";
 
 export default function JobsPage() {
   return (
@@ -12,35 +13,16 @@ export default function JobsPage() {
         title="Jobs"
         description="Roles you're actively recruiting for, across all clients."
         actions={
-          <>
-            <Button variant="outline" size="sm">
-              <SlidersHorizontal />
-              Filters
-            </Button>
-            <Button size="sm">
+          <Button size="sm" asChild>
+            <Link href="/jobs/new">
               <PlusCircle />
               Post a role
-            </Button>
-          </>
+            </Link>
+          </Button>
         }
       />
 
-      <Card>
-        <CardContent className="p-0">
-          <EmptyState
-            icon={Briefcase}
-            title="No open roles yet"
-            description="Post a role to start sourcing and matching candidates against it."
-            action={
-              <Button size="sm">
-                <PlusCircle />
-                Post your first role
-              </Button>
-            }
-            className="border-none"
-          />
-        </CardContent>
-      </Card>
+      <JobsTable jobs={jobs} />
     </>
   );
 }

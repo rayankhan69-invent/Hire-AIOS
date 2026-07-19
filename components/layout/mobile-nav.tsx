@@ -32,7 +32,14 @@ export function MobileNav() {
                 </p>
               ) : null}
               {section.items.map((item) => (
-                <NavItem key={item.href} item={item} onNavigate={() => setOpen(false)} />
+                <NavItem
+                  key={item.href}
+                  href={item.href}
+                  label={item.label}
+                  icon={<item.icon />}
+                  badge={item.badge}
+                  onNavigate={() => setOpen(false)}
+                />
               ))}
             </div>
           ))}

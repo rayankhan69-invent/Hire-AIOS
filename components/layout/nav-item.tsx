@@ -1,23 +1,34 @@
 "use client";
 
+import type { ReactNode } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
-import type { NavItemConfig } from "@/lib/nav-config";
 
-export function NavItem({ item, onNavigate }: { item: NavItemConfig; onNavigate?: () => void }) {
+export function NavItem({
+  href,
+  label,
+  icon,
+  badge,
+  onNavigate,
+}: {
+  href: string;
+  label: string;
+  icon: ReactNode;
+  badge?: string;
+  onNavigate?: () => void;
+}) {
   const pathname = usePathname();
-  const isActive = pathname === item.href || pathname?.startsWith(`${item.href}/`);
-  const Icon = item.icon;
+  const isActive = pathname === href || pathname?.startsWith(`${href}/`);
 
   return (
     <Link
-      href={item.href}
+      href={href}
       onClick={onNavigate}
       aria-current={isActive ? "page" : undefined}
       className={cn(
-        "group flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors",
+        "group relative flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors",
         isActive
           ? "bg-sidebar-accent/15 text-white"
           : "text-sidebar-foreground/70 hover:bg-white/5 hover:text-sidebar-foreground"
@@ -30,11 +41,13 @@ export function NavItem({ item, onNavigate }: { item: NavItemConfig; onNavigate?
         )}
         aria-hidden
       />
-      <Icon className={cn("h-4 w-4 shrink-0", isActive && "text-sidebar-accent")} />
-      <span className="flex-1 truncate">{item.label}</span>
-      {item.badge ? (
+      <span className={cn("flex h-4 w-4 shrink-0 [&>svg]:h-4 [&>svg]:w-4", isActive && "text-sidebar-accent")}>
+        {icon}
+      </span>
+      <span className="flex-1 truncate">{label}</span>
+      {badge ? (
         <span className="rounded-full bg-sidebar-accent/20 px-1.5 py-0.5 text-[10px] font-semibold text-sidebar-accent">
-          {item.badge}
+          {badge}
         </span>
       ) : null}
     </Link>

@@ -18,7 +18,13 @@ export function Sidebar() {
               </p>
             ) : null}
             {section.items.map((item) => (
-              <NavItem key={item.href} item={item} />
+              <NavItem
+                key={item.href}
+                href={item.href}
+                label={item.label}
+                icon={<item.icon />}
+                badge={item.badge}
+              />
             ))}
           </div>
         ))}
